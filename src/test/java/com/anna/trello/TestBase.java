@@ -31,23 +31,30 @@ public class TestBase {
         wd.findElement(By.cssSelector("#login-submit")).click();
     }
 
-    public void fillLoginForm() {
-        wd.findElement(By.cssSelector("#user")).click();
-        wd.findElement(By.cssSelector("#user")).clear();
-        wd.findElement(By.cssSelector("#user")).sendKeys("aniapog@mail.ru");
+    public void fillLoginForm(String email, String password) {
+        type(By.cssSelector("#user"), email);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        wd.findElement(By.cssSelector("#login")).click();
+        click(By.cssSelector("#login"));
 
-        wd.findElement(By.cssSelector("#password")).click();
-        wd.findElement(By.cssSelector("#password")).clear();
-        wd.findElement(By.cssSelector("#password")).sendKeys("TrelloAnnaPo");
+        type(By.cssSelector("#password"), password);
 
     }
+
+    public void type(By locator, String text) {
+        click(locator);
+        wd.findElement(locator).clear();
+        wd.findElement(locator).sendKeys(text);
+    }
+
+    public void click(By locator) {
+        wd.findElement(locator).click();
+    }
+
 
     public void clickLoginButton() {
         wd.findElement(By.cssSelector("[href='/login']")).click();
