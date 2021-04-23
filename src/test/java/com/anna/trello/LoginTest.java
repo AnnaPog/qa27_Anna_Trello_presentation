@@ -9,7 +9,9 @@ public class LoginTest extends TestBase{
     @Test
     public void testLoginAtlassian(){
         clickLoginButton();
-        fillLoginForm("aniapog@mail.ru", "TrelloAnnaPo");
+        fillLoginForm(new User()
+                .setEmail("aniapog@mail.ru")
+                .setPassword("TrelloAnnaPo"));
         confirmLogin();
 
         Assert.assertTrue(wd.findElements(By.cssSelector("[data-test-id$='header-member-menu-button']")).size()>0);
@@ -17,9 +19,9 @@ public class LoginTest extends TestBase{
     }
 
     @Test
-    public void negativeTestLogin(){
+    public void negativeTestLoginWithoutPassword(){
         clickLoginButton();
-        fillLoginForm("aniapog@mail.ru", "TrelloAnnapo");
+        fillLoginForm(new User().setEmail("aniapog@mail.ru"));
         confirmLogin();
 
     }

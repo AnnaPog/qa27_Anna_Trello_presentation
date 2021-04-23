@@ -4,29 +4,31 @@ import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class BoardCreationsTests extends TestBase {
 
     @BeforeMethod
     public void preconditions() {
         clickLoginButton();
-        fillLoginForm("aniapog@mail.ru", "TrelloAnnaPo");
+        //fillLoginForm(new User("aniapog@mail.ru", "TrelloAnnaPo"));
         confirmLogin();
     }
 
     @Test
     public void testBoardCreation() {
         initBoardCreationFromBoardsdList();
-        type(By.xpath("//input[@data-test-id='create-board-title-input']"), "board");
-//        wd.findElement(By.xpath("//input[@data-test-id='create-board-title-input']")).click();
-//        wd.findElement(By.xpath("//input[@data-test-id='create-board-title-input']")).clear();
-//        wd.findElement(By.xpath("//input[@data-test-id='create-board-title-input']")).sendKeys("board");
-
-
-        selectBoardVisibility("PublicIcon");
+        fillBoardCreationForm(new Board("board" + TimeUnit.SECONDS, "PublicIcon"));
         selectBoardVisibility("DownIcon");
         // wd.findElement(By.xpath("//*[@class = 'voB8NatlbuEme5 _21upOlzpUQJcdT gkv95EhjCrfcEU']")).click();
         click(By.cssSelector("._21upOlzpUQJcdT.gkv95EhjCrfcEU"));
         click(By.cssSelector("[data-test-id='create-board-submit-button']"));
+    }
+
+    public void fillBoardCreationForm(Board board) {
+        type(By.xpath("//input[@data-test-id='create-board-title-input']"), board.withBoardName());
+
+        selectBoardVisibility(board.withVisibility());
     }
 
     public void selectBoardVisibility(String visibility) {

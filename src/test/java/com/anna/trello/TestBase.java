@@ -31,8 +31,8 @@ public class TestBase {
         wd.findElement(By.cssSelector("#login-submit")).click();
     }
 
-    public void fillLoginForm(String email, String password) {
-        type(By.cssSelector("#user"), email);
+    public void fillLoginForm(User user) {
+        type(By.cssSelector("#user"), user.getEmail());
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -41,14 +41,16 @@ public class TestBase {
 
         click(By.cssSelector("#login"));
 
-        type(By.cssSelector("#password"), password);
+        type(By.cssSelector("#password"), user.getPassword());
 
     }
 
     public void type(By locator, String text) {
-        click(locator);
-        wd.findElement(locator).clear();
-        wd.findElement(locator).sendKeys(text);
+        if(text!=null) {
+            click(locator);
+            wd.findElement(locator).clear();
+            wd.findElement(locator).sendKeys(text);
+        }
     }
 
     public void click(By locator) {
