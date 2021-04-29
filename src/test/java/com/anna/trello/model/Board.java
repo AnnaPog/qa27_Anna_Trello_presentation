@@ -1,4 +1,4 @@
-package com.anna.trello;
+package com.anna.trello.model;
 
 public class Board {
     private String boardName;
