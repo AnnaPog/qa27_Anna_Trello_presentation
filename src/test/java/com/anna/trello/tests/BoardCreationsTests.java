@@ -1,6 +1,7 @@
 package com.anna.trello.tests;
 
 import com.anna.trello.model.Board;
+import com.anna.trello.model.User;
 import com.anna.trello.tests.TestBase;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -11,16 +12,21 @@ public class BoardCreationsTests extends TestBase {
 
     @BeforeMethod
     public void preconditions() {
-        app.getUser().clickLoginButton();
-        //fillLoginForm(new User("aniapog@mail.ru", "TrelloAnnaPo"));
-        app.getUser().confirmLogin();
+        if(!app.getUser().isAvatarPresent()){
+            app.getUser().clickLoginButton();
+            app.getUser().fillLoginForm(new User().setEmail("aniapog@mail.ru")
+            .setPassword("TrelloAnnaPo"));
+            //fillLoginForm(new User("aniapog@mail.ru", "TrelloAnnaPo"));
+            app.getUser().confirmLogin();
+        }
+
     }
 
     @Test
     public void testBoardCreation() {
         app.getBoard().initBoardCreationFromBoardsdList();
         app.getBoard().fillBoardCreationForm(new Board("board" + TimeUnit.SECONDS, "PublicIcon"));
-        app.getBoard().selectBoardVisibility("DownIcon");
+        //app.getBoard().selectBoardVisibility("DownIcon");
         // wd.findElement(By.xpath("//*[@class = 'voB8NatlbuEme5 _21upOlzpUQJcdT gkv95EhjCrfcEU']")).click();
         app.getBoard().submitBoardCreationForm();
     }

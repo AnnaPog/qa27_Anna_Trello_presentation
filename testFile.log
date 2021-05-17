@@ -1,0 +1,4 @@
+36199 [Test worker] INFO  com.anna.trello.tests.TestBase - Start method negativeTestLogin
+79732 [Test worker] INFO  com.anna.trello.tests.TestBase - Stop method negativeTestLogin
+21:33:04  INFO  com.anna.trello.tests.TestBase - Start method negativeTestLogin
+21:33:31  INFO  com.anna.trello.tests.TestBase - Stop method negativeTestLogin

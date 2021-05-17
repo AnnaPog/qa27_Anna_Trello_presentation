@@ -35,4 +35,13 @@ public class UserHelper extends HelperBase{
     public boolean isAvatarPresent() {
         return isElementPresent(By.cssSelector("[data-test-id$='header-member-menu-button']"));
     }
+
+    public void logout() {
+        click(By.xpath("/button[@data-test-id='header-member-menu-button']"));
+        click(By.xpath("//div[@class='_1ArtKJZLTN_ljN px-0 pt-0']//li[8]"));
+        click(By.xpath("//span[@class='css-t5emrf']"));
+        //click on avatar
+        //click logout
+        //confirm logout
+    }
 }

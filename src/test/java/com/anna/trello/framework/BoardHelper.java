@@ -16,7 +16,7 @@ public class BoardHelper extends HelperBase{
     }
 
     public void selectBoardVisibility(String visibility) {
-        //  click(By.xpath("//*[@aria-label='DownIcon']/../.."));
+        click(By.xpath("//*[@aria-label='DownIcon']/../.."));
         click(By.xpath("//*[@aria-label='" +visibility+ "']/../.."));
     }
 
@@ -24,8 +24,6 @@ public class BoardHelper extends HelperBase{
         // wd.findElement(By.xpath("//div[@class='TMI28E0KnYSK9p'][1]")).click();
         wd.findElement(By.xpath("//button[@data-test-id='header-create-menu-button']")).click();
         wd.findElement(By.xpath("//button[@data-test-id='header-create-board-button']")).click();
-
-
     }
 
     public void submitBoardCreationForm() {
