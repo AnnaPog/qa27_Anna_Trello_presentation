@@ -1,8 +1,6 @@
 package com.anna.trello.tests;
 
 import com.anna.trello.model.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -26,9 +24,8 @@ public class LoginTest extends TestBase {
                 .setEmail("aniapog@mail.ru")
                 .setPassword("TrelloAnnaPo"));
         app.getUser().confirmLogin();
-        Thread.sleep(3000);
 
-        Assert.assertTrue(app.getUser().isAvatarPresent());
+        Assert.assertTrue(app.getUser().isAvatarPresent(), "Avatar isn't present - user not logged in");
         //Assert.assertEquals(wd.findElement(By.cssSelector("[data-test-id$='header-member-menu-button']")).getAttribute("title"), "Anna (anna56118081)");
         logger.info("Stop Test login Atlassian");
     }

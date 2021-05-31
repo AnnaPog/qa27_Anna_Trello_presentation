@@ -2,6 +2,13 @@ package com.anna.trello.framework;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class HelperBase {
     WebDriver wd;
@@ -24,6 +31,26 @@ public class HelperBase {
 
     public boolean isElementPresent(By locator) {
         return wd.findElements(locator).size() > 0;
+    }
+
+//    public boolean isElementPresentAfterWait(By locator) {
+//        List<WebElement> list = new ArrayList<>();
+//        WebElement element = new WebDriverWait(wd, 20).until(ExpectedConditions.presenceOfElementLocated(locator));
+//        try {
+//            list.add(element);
+//            return wd.findElements(locator).size() > 0;
+//        }catch (Exception ex){
+//            return false;
+//        }
+//    }
+
+    public boolean isElementPresentWait(By locator, long time) {
+        try {
+           new WebDriverWait(wd, time ).until(ExpectedConditions.presenceOfElementLocated(locator));
+        }catch (NoSuchElementException ex){
+            return false;
+        }
+        return true;
     }
 
  

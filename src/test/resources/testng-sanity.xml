@@ -12,6 +12,7 @@
             </methods>
             </class>
             <class name="com.anna.trello.tests.BoardCreationsTests" />
+            <class name="com.anna.trello.tests.BoardDeletionTests" />
         </classes>
     </test>
 
