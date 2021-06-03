@@ -30,7 +30,7 @@ public class LoginTest extends TestBase {
         logger.info("Stop Test login Atlassian");
     }
 
-    @Test
+    @Test(enabled = false)
     public void negativeTestLogin() throws InterruptedException {
         app.getUser().clickLoginButton();
         app.getUser().fillLoginForm(new User().setEmail("rochman.elena@gmail.com").setPassword("12345.cOm"));
@@ -38,7 +38,7 @@ public class LoginTest extends TestBase {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void negativeTestLoginWithoutPassword(){
         app.getUser().clickLoginButton();
         app.getUser().fillLoginForm(new User().setEmail("aniapog@mail.ru"));
